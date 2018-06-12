@@ -4,20 +4,24 @@ In this lesson, you'll implement a simple counter with Redux from scratch. The b
 const INCREMENT = 1; // define a constant for increment action types
 const DECREMENT = -1; // define a constant for decrement action types
 
-const counterReducer = (state=0,action)=>{
-    switch(action.type){
-        case INCREMENT:
-            return state+INCREMENT;
-        case DECREMENT:
-            return state+DECREMENT;
-        default:
-            return state;
-    }
+const counterReducer = (state = 0, action) => {
+  switch (action.type) {
+    case INCREMENT:
+      return state + INCREMENT;
+    case DECREMENT:
+      return state + DECREMENT;
+    default:
+      return state;
+  }
 }; // define the counter reducer which will increment or decrement the state based on the action it receives
 
-const incAction = ()=>{return {type:INCREMENT}}; // define an action creator for incrementing
+const incAction = () => {
+  return { type: INCREMENT };
+}; // define an action creator for incrementing
 
-const decAction = ()=>{return {type:DECREMENT}}; // define an action creator for decrementing
+const decAction = () => {
+  return { type: DECREMENT };
+}; // define an action creator for decrementing
 
 const store = Redux.createStore(counterReducer); // define the Redux store here, passing in your reducers
 

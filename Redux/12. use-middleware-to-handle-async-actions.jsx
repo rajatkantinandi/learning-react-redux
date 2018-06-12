@@ -7,11 +7,15 @@ In this example, an asynchronous request is simulated with a setTimeout() call. 
 Remember that you're passing dispatch as a parameter to this special action creator. This is what you'll use to dispatch your actions, you simply pass the action directly to dispatch and the middleware takes care of the rest.
 
 Write both dispatches in the handleAsync() action creator. Dispatch requestingData() before the setTimeout() (the simulated API call). Then, after you receive the (pretend) data, dispatch the receivedData() action, passing in this data. Now you know how to handle asynchronous actions in Redux. Everything else continues to behave as before. */
-const REQUESTING_DATA = 'REQUESTING_DATA'
-const RECEIVED_DATA = 'RECEIVED_DATA'
+const REQUESTING_DATA = "REQUESTING_DATA";
+const RECEIVED_DATA = "RECEIVED_DATA";
 
-const requestingData = () => { return {type: REQUESTING_DATA} }
-const receivedData = (data) => { return {type: RECEIVED_DATA, users: data.users} }
+const requestingData = () => {
+  return { type: REQUESTING_DATA };
+};
+const receivedData = data => {
+  return { type: RECEIVED_DATA, users: data.users };
+};
 
 const handleAsync = () => {
   return function(dispatch) {
@@ -19,12 +23,12 @@ const handleAsync = () => {
     store.dispatch(requestingData());
     setTimeout(function() {
       let data = {
-        users: ['Jeff', 'William', 'Alice']
-      }
+        users: ["Jeff", "William", "Alice"]
+      };
       // dispatch received data action here
-    store.dispatch(receivedData(data));
+      store.dispatch(receivedData(data));
     }, 2500);
-  }
+  };
 };
 
 const defaultState = {
@@ -33,17 +37,17 @@ const defaultState = {
 };
 
 const asyncDataReducer = (state = defaultState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case REQUESTING_DATA:
       return {
         fetching: true,
         users: []
-      }
+      };
     case RECEIVED_DATA:
       return {
         fetching: false,
         users: action.users
-      }
+      };
     default:
       return state;
   }
