@@ -23,10 +23,7 @@ const messageReducer = (state = [], action) => {
   }
 };
 
-const store = Redux.createStore(
-  messageReducer,
-  Redux.applyMiddleware(ReduxThunk.default)
-);
+const store = Redux.createStore(messageReducer);
 
 // React:
 const Provider = ReactRedux.Provider;
@@ -48,7 +45,7 @@ class Presentational extends React.Component {
     });
   }
   submitMessage() {
-    store.dispatch(this.props.submitNewMessage(this.state.input));
+    this.props.submitNewMessage(this.state.input);
     this.setState({
       input: ""
     });
